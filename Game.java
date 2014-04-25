@@ -34,10 +34,11 @@ public class Game
      */
     private void createRooms()
     {
-        Room outside, flechazo, rebote, hurley, mishara, colonial;
+        Room humedo, flechazo, rebote, hurley, mishara, colonial, galocha;
 
         // create the rooms
-        outside = new Room("in the middle of the barrio Húmedo");
+        humedo = new Room("in the middle of the barrio Húmedo");
+        galocha = new Room("in the pub called galocha");
         flechazo = new Room("in the pub called flechazo");
         rebote = new Room("in the pub called rebote");        
         hurley = new Room("in the pub called hurley");
@@ -45,14 +46,15 @@ public class Game
         colonial = new Room("in the pub called colonial");
 
         // initialise room exits
-        outside.setExits(null, flechazo, hurley, rebote, null);
-        flechazo.setExits(null, null, null, outside, null);
-        rebote.setExits(null, outside, null, null, null);
-        hurley.setExits(outside, mishara, null, null, null);
-        mishara.setExits(null, null, null, hurley, colonial);
-        colonial.setExits(null, null, null, null, mishara);
+        humedo.setExits(null, flechazo, hurley, rebote, null, galocha);
+        galocha.setExits(null, null, null, null, humedo, null);
+        flechazo.setExits(null, null, null, humedo, null, null);
+        rebote.setExits(null, humedo, null, null, null, null);
+        hurley.setExits(humedo, mishara, null, null, null, null);
+        mishara.setExits(null, null, null, hurley, colonial, null);
+        colonial.setExits(null, null, null, null, mishara, null);
 
-        currentRoom = outside;  // start game outside
+        currentRoom = humedo;  // start game outside
     }
 
     /**
