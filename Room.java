@@ -14,12 +14,12 @@
  */
 public class Room 
 {
-    public String description;
-    public Room northExit;
-    public Room southExit;
-    public Room eastExit;
-    public Room westExit;
-    public Room southEastExit;
+    private String description;
+    private Room northExit;
+    private Room southExit;
+    private Room eastExit;
+    private Room westExit;
+    private Room southEastExit;
 
     /**
      * Create a room described "description". Initially, it has
@@ -62,4 +62,49 @@ public class Room
         return description;
     }
 
+    public Room getExit(String direction){
+        Room exitRoom = null;
+        if(direction.equals("north")){
+            exitRoom = northExit;
+        }
+        if(direction.equals("south")){
+            exitRoom = southExit;
+        }
+        if(direction.equals("east")){
+            exitRoom = eastExit;
+        }
+        if(direction.equals("west")){
+            exitRoom = westExit;
+        }
+        if(direction.equals("southEast")){
+            exitRoom = southEastExit;
+        }
+        return exitRoom;
+    }
+
+    /**
+     * Return a description of the room's exits.
+     * For example: "Exits: north east west"
+     *
+     * @ return A description of the available exits.
+     */
+    public String getExitString(){
+        String getExitString = "";
+        if(northExit != null){
+            getExitString += "north ";
+        }
+        if(eastExit != null) {
+            getExitString += "east ";
+        }
+        if(southExit != null) {
+            getExitString += "south ";
+        }
+        if(westExit != null) {
+            getExitString += "west ";
+        }
+        if(southEastExit != null) {
+            getExitString += "southEast ";
+        }
+        return getExitString;
+    }
 }
