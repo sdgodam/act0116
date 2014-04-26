@@ -84,7 +84,7 @@ public class Game
             Command command = parser.getCommand();
             finished = processCommand(command);
         }
-        System.out.println("Thank you for playing.  Good bye.");
+        System.out.println("Thank you for playing. Good bye.");
     }
 
     /**
@@ -204,9 +204,7 @@ public class Game
 
     private void printLocationInfo()
     {
-        System.out.println("You are " + currentRoom.getDescription());
-        System.out.print("Exits: ");
-        System.out.print(currentRoom.getExitString());
+        System.out.print("You are " + currentRoom.getLongDescription());
         System.out.println();
     }
 }
