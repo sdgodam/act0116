@@ -17,12 +17,6 @@ public class Room
 {
     private String description;
     private HashMap<String,Room> exits;
-    //     private Room northExit;
-    //     private Room southExit;
-    //     private Room eastExit;
-    //     private Room westExit;
-    //     private Room southEastExit;
-    //     private Room northWestExit;
 
     /**
      * Create a room described "description". Initially, it has
@@ -43,29 +37,15 @@ public class Room
     }
 
     /**
-     * Define the exits of this room.  Every direction either leads
-     * to another room or is null (no exit there).
-     * @param north The north exit.
-     * @param east The east east.
-     * @param south The south exit.
-     * @param west The west exit.
+     * Define an exit from this room.
+     * @param neighbor The room in the given direction.
+     * @param direction The direction of the exit,its values can be:
+     * northExit, southExit, eastExit, westExit, southEastExit, northWestExit;
      */
-    public void setExits(Room north, Room east, Room south, Room west, Room southEast, Room northWest) 
-    {
-        if(north != null)
-            exits.put("northExit",north);
-        if(east != null)
-            exits.put("eastExit",east);
-        if(south != null)
-            exits.put("southExit",south);
-        if(west != null)
-            exits.put("westExit",west);
-        if(southEast != null)
-            exits.put("southEastExit",southEast);
-        if(northWest != null)
-            exits.put("northWestExit",northWest);
+    public void setExit(String direction, Room neighbor){
+        exits.put(direction, neighbor);
     }
-
+    
     /**
      * @return The description of the room.
      */

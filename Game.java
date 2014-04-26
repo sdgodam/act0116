@@ -46,14 +46,26 @@ public class Game
         colonial = new Room("in the pub called colonial");
 
         // initialise room exits
-        humedo.setExits(null, flechazo, hurley, rebote, null, galocha);
-        galocha.setExits(null, null, null, null, humedo, null);
-        flechazo.setExits(null, null, null, humedo, null, null);
-        rebote.setExits(null, humedo, null, null, null, null);
-        hurley.setExits(humedo, mishara, null, null, null, null);
-        mishara.setExits(null, null, null, hurley, colonial, null);
-        colonial.setExits(null, null, null, null, mishara, null);
-
+        //room humedo
+        humedo.setExit("eastExit", flechazo);
+        humedo.setExit("southExit", hurley);
+        humedo.setExit("westExit", rebote);
+        humedo.setExit("northWestExit", galocha);
+        //room galocha
+        galocha.setExit("southEastExit", humedo);
+        //room flechazo
+        flechazo.setExit("westExit", humedo);
+        //room rebote
+        rebote.setExit("eastExit", humedo);
+        //room hurley
+        hurley.setExit("northExit", humedo);
+        hurley.setExit("eastExit", mishara);
+        //room mishara
+        mishara.setExit("westExit", hurley);
+        mishara.setExit("southEastExit", colonial);
+        //room colonial
+        colonial.setExit("northWestExit", mishara);
+        
         currentRoom = humedo;  // start game outside
     }
 
