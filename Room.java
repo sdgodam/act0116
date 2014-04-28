@@ -1,4 +1,5 @@
 import java.util.HashMap;
+import java.util.Set;
 /**
  * Class Room - a room in an adventure game.
  *
@@ -28,12 +29,12 @@ public class Room
     {
         this.description = description;
         exits = new HashMap<>();
-        exits.put("northExit", null);
-        exits.put("southExit", null);
-        exits.put("eastExit", null);
-        exits.put("westExit", null);
-        exits.put("southEastExit", null);
-        exits.put("northWestExit", null);
+        //         exits.put("north", null);
+        //         exits.put("south", null);
+        //         exits.put("east", null);
+        //         exits.put("west", null);
+        //         exits.put("southEast", null);
+        //         exits.put("northWest", null);
     }
 
     /**
@@ -55,26 +56,7 @@ public class Room
     }
 
     public Room getExit(String direction){
-        Room exitRoom = null;
-        if(direction.equals("north")){
-            exitRoom = exits.get("northExit");
-        }
-        if(direction.equals("south")){
-            exitRoom = exits.get("southExit");
-        }
-        if(direction.equals("east")){
-            exitRoom = exits.get("eastExit");
-        }
-        if(direction.equals("west")){
-            exitRoom = exits.get("westExit");
-        }
-        if(direction.equals("southEast")){
-            exitRoom = exits.get("southEastExit");
-        }
-        if(direction.equals("northWest")){
-            exitRoom = exits.get("northWestExit");
-        }
-        return exitRoom;
+        return exits.get(direction);
     }
 
     /**
@@ -85,24 +67,30 @@ public class Room
      */
     private String getExitString(){
         String getExitString = "Exits: ";
-        if(exits.get("northExit") != null){
-            getExitString += "north ";
+        Set<String> keys = exits.keySet();
+        for(String key : keys){
+            if(exits.get(key) != null){
+                getExitString += key + " ";
+            }
         }
-        if(exits.get("eastExit") != null) {
-            getExitString += "east ";
-        }
-        if(exits.get("southExit") != null) {
-            getExitString += "south ";
-        }
-        if(exits.get("westExit") != null) {
-            getExitString += "west ";
-        }
-        if(exits.get("southEastExit") != null) {
-            getExitString += "southEast ";
-        }
-        if(exits.get("northWestExit") != null) {
-            getExitString += "northWest ";
-        }
+        //         if(exits.get("north") != null){
+        //             getExitString += "north ";
+        //         }
+        //         if(exits.get("east") != null) {
+        //             getExitString += "east ";
+        //         }
+        //         if(exits.get("south") != null) {
+        //             getExitString += "south ";
+        //         }
+        //         if(exits.get("west") != null) {
+        //             getExitString += "west ";
+        //         }
+        //         if(exits.get("southEast") != null) {
+        //             getExitString += "southEast ";
+        //         }
+        //         if(exits.get("northWest") != null) {
+        //             getExitString += "northWest ";
+        //         }
         return getExitString;
     }
 

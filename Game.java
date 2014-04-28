@@ -47,25 +47,25 @@ public class Game
 
         // initialise room exits
         //room humedo
-        humedo.setExit("eastExit", flechazo);
-        humedo.setExit("southExit", hurley);
-        humedo.setExit("westExit", rebote);
-        humedo.setExit("northWestExit", galocha);
+        humedo.setExit("east", flechazo);
+        humedo.setExit("south", hurley);
+        humedo.setExit("west", rebote);
+        humedo.setExit("northWest", galocha);
         //room galocha
-        galocha.setExit("southEastExit", humedo);
+        galocha.setExit("southEast", humedo);
         //room flechazo
-        flechazo.setExit("westExit", humedo);
+        flechazo.setExit("west", humedo);
         //room rebote
-        rebote.setExit("eastExit", humedo);
+        rebote.setExit("east", humedo);
         //room hurley
-        hurley.setExit("northExit", humedo);
-        hurley.setExit("eastExit", mishara);
+        hurley.setExit("north", humedo);
+        hurley.setExit("east", mishara);
         //room mishara
-        mishara.setExit("westExit", hurley);
-        mishara.setExit("southEastExit", colonial);
+        mishara.setExit("west", hurley);
+        mishara.setExit("southEast", colonial);
         //room colonial
-        colonial.setExit("northWestExit", mishara);
-        
+        colonial.setExit("northWest", mishara);
+
         currentRoom = humedo;  // start game outside
     }
 
@@ -93,8 +93,8 @@ public class Game
     private void printWelcome()
     {
         System.out.println();
-        System.out.println("Welcome to the World of Zuul!");
-        System.out.println("World of Zuul is a new, incredibly boring adventure game.");
+        System.out.println("Welcome to the World of Barrio Humedo!");
+        System.out.println("World of Barrio Humedo is a new, incredibly drunk adventure game.");
         System.out.println("Type 'help' if you need help.");
         System.out.println();
         printLocationInfo();
@@ -142,8 +142,8 @@ public class Game
     {
         System.out.println("You are lost. You are alone. You wander");
         System.out.println("around at the humedo and public relations"+
-                          "\nare trying you drink more \"garrafón\""+
-                          "\nYou must find ur friends! ¡¡FAST!!");
+            "\nare trying you drink more \"garrafón\""+
+            "\nYou must find ur friends! ¡¡FAST!!");
         System.out.println();
         System.out.println("Your command words are:");
         System.out.println("   go quit help look");
@@ -190,6 +190,7 @@ public class Game
             printLocationInfo();
         }
     }
+
     /**
      * look command
      */
@@ -202,6 +203,7 @@ public class Game
             //printLocationInfo();    preguntar si es peor solucion llamar a este metodo o da igual 
         }
     }
+
     /** 
      * "Quit" was entered. Check the rest of the command to see
      * whether we really quit the game.
