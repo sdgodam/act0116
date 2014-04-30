@@ -36,15 +36,22 @@ public class Game
     {
         Room humedo, flechazo, rebote, hurley, mishara, colonial, galocha;
 
-        // create the rooms
-        humedo = new Room("in the middle of the barrio Húmedo", "botella de Ron Brugal", 0.75);
-        galocha = new Room("in the pub called galocha", "navaja", 0.2);
-        flechazo = new Room("in the pub called flechazo", "paraguas", 0.8);
-        rebote = new Room("in the pub called rebote", "bufanda", 0.3);        
-        hurley = new Room("in the pub called hurley", "moto", 250);
-        mishara = new Room("in the pub called mishara", "galaxy S5", 0.2);
-        colonial = new Room("in the pub called colonial", "cazadora de cuero", 0.9);
-
+        // create the rooms and add an object inside it
+        humedo = new Room("in the middle of the barrio Húmedo");
+        humedo.addItem(new Item("botella de Ron Brugal", 0.75));
+        galocha = new Room("in the pub called galocha");
+        galocha.addItem(new Item("navaja", 0.2));
+        flechazo = new Room("in the pub called flechazo");
+        flechazo.addItem(new Item("paraguas", 0.8));
+        rebote = new Room("in the pub called rebote");        
+        rebote.addItem(new Item("bufanda", 0.3));
+        hurley = new Room("in the pub called hurley");
+        hurley.addItem(new Item("moto", 250));
+        mishara = new Room("in the pub called mishara");
+        mishara.addItem(new Item("galaxy S5", 0.2));
+        colonial = new Room("in the pub called colonial");
+        colonial.addItem(new Item("cazadora de cuero", 0.9));
+        
         // initialise room exits
         //room humedo
         humedo.setExit("east", flechazo);
@@ -164,27 +171,9 @@ public class Game
             return;
         }
 
-        //         String direction = command.getSecondWord();
-
         // Try to leave current room.
         Room nextRoom = currentRoom.getExit(command.getSecondWord());
-        //         Room nextRoom = null;
-        //         if(direction.equals("north")) {
-        //             nextRoom = currentRoom.northExit;
-        //         }
-        //         if(direction.equals("east")) {
-        //             nextRoom = currentRoom.eastExit;
-        //         }
-        //         if(direction.equals("south")) {
-        //             nextRoom = currentRoom.southExit;
-        //         }
-        //         if(direction.equals("west")) {
-        //             nextRoom = currentRoom.westExit;
-        //         }
-        //         if(direction.equals("southEast")) {
-        //             nextRoom = currentRoom.southEastExit;
-        //         }
-
+        
         if (nextRoom == null) {
             System.out.println("There is no door!");
         }
@@ -195,7 +184,8 @@ public class Game
     }
 
     /**
-     * look command
+     * This method looks your location
+     * @param command The comand that you introduce
      */
     private void look(Command command){
         if(command.hasSecondWord()) {
@@ -206,6 +196,9 @@ public class Game
         }
     }
 
+    /**
+     * Inform you after eating that you aren´t hungry
+     */
     private void eat(Command command)
     {
         if(command.hasSecondWord()) {
@@ -232,9 +225,12 @@ public class Game
         }
     }
 
+    /**
+     * Show you the description of your current room and the item that is on it
+     */
     private void printLocationInfo()
     {
         System.out.println("You are " + currentRoom.getLongDescription()+"\n"
-            + "This room has the item called " + currentRoom.getItem() + " and its weight is "+ currentRoom.getWeight() + " Kgs");
+            + "This room has the item called " + currentRoom.getFirstItemDescription() + " and its weight is "+ currentRoom.getFirstItemWeight() + " Kgs");
     }
 }

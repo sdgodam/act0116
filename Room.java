@@ -1,5 +1,6 @@
 import java.util.HashMap;
 import java.util.Set;
+import java.util.ArrayList;
 /**
  * Class Room - a room in an adventure game.
  *
@@ -18,8 +19,7 @@ public class Room
 {
     private String description;
     private HashMap<String,Room> exits;
-    private String item;
-    private double weight;
+    private ArrayList<Item> items;
 
     /**
      * Create a room described "description". Initially, it has
@@ -27,12 +27,43 @@ public class Room
      * "an open court yard".
      * @param description The room's description.
      */
-    public Room(String description, String item, double weight) 
+    public Room(String description) 
     {
         this.description = description;
         exits = new HashMap<>();
-        this.item = item;
-        this.weight = weight;
+        items = new ArrayList<>();
+    }
+
+    /**
+     * @return The description of the room.
+     */
+    public String getDescription()
+    {
+        return description;
+    }
+    
+    /**
+     * @return The first item´s description of the room.
+     */
+    public String getFirstItemDescription()
+    {
+        return items.get(0).getDescription();
+    }
+    
+    /**
+     * @return The first item´s weigth of the room.
+     */
+    public double getFirstItemWeight()
+    {
+        return items.get(0).getWeight();
+    }
+
+    /**
+     * The method adds a item inside the collection of items.
+     */
+    public void addItem(Item item)
+    {
+        items.add(item);
     }
 
     /**
@@ -46,29 +77,10 @@ public class Room
     }
 
     /**
-     * @return The description of the room.
+     * This method returns the exit that the room has in the direction given
+     * @param direction The direction of the exit that you are looking for
+     * @return The exit of the room in the direction given
      */
-    public String getDescription()
-    {
-        return description;
-    }
-
-    /**
-     * @return The item of the room.
-     */
-    public String getItem()
-    {
-        return item;
-    }
-    
-    /**
-     * @return The weight of the item of the room.
-     */
-    public double getWeight()
-    {
-        return weight;
-    }
-    
     public Room getExit(String direction){
         return exits.get(direction);
     }
@@ -87,24 +99,6 @@ public class Room
                 getExitString += key + " ";
             }
         }
-        //         if(exits.get("north") != null){
-        //             getExitString += "north ";
-        //         }
-        //         if(exits.get("east") != null) {
-        //             getExitString += "east ";
-        //         }
-        //         if(exits.get("south") != null) {
-        //             getExitString += "south ";
-        //         }
-        //         if(exits.get("west") != null) {
-        //             getExitString += "west ";
-        //         }
-        //         if(exits.get("southEast") != null) {
-        //             getExitString += "southEast ";
-        //         }
-        //         if(exits.get("northWest") != null) {
-        //             getExitString += "northWest ";
-        //         }
         return getExitString;
     }
 
