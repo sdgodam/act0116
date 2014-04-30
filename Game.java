@@ -1,3 +1,4 @@
+import java.util.Stack;
 /**
  *  This class is the main class of the "World of Zuul" application. 
  *  "World of Zuul" is a very simple, text based adventure game.  Users 
@@ -19,7 +20,7 @@ public class Game
 {
     private Parser parser;
     private Room currentRoom;
-    private Command previousCommand;
+    private Stack<Command> previousCommands;
 
     /**
      * Create the game and initialise its internal map.
@@ -28,7 +29,7 @@ public class Game
     {
         createRooms();
         parser = new Parser();
-        previousCommand = null;
+        previousCommands = new Stack<>();
     }
 
     /**
@@ -53,7 +54,7 @@ public class Game
         mishara.addItem(new Item("galaxy S5", 0.2));
         colonial = new Room("in the pub called colonial");
         colonial.addItem(new Item("cazadora de cuero", 0.9));
-        
+
         // initialise room exits
         //room humedo
         humedo.setExit("east", flechazo);
@@ -178,13 +179,13 @@ public class Game
 
         // Try to leave current room.
         Room nextRoom = currentRoom.getExit(command.getSecondWord());
-        
+
         if (nextRoom == null) {
             System.out.println("There is no door!");
         }
         else {
             //save the previous command
-            previousCommand = command;
+            previousCommands.push(command);
             //change current room for next room
             currentRoom = nextRoom;
             printLocationInfo();
@@ -216,45 +217,51 @@ public class Game
             System.out.println("You have eaten now and you are not hungry any more");
         }
     }
-    
+
     /**
      * Permit you to back to the previous room visited
      */
     private void back(){
         String backFirstWord = "go";
         String backSecondWord;
-        if(previousCommand == null){
+        if(previousCommands.empty()){
             System.out.println("You don´t move, so not exists a previous room");
         }else{
-            if(previousCommand.getSecondWord().equals("north")){
+            Command previousCommand = previousCommands.pop();
+            String preCommandSecondWord = previousCommand.getSecondWord();
+            
+            if(preCommandSecondWord.equals("north")){
                 backSecondWord = "south";
                 goRoom(new Command(backFirstWord,backSecondWord));
             }
             
-            if(previousCommand.getSecondWord().equals("south")){
+            if(preCommandSecondWord.equals("south")){
                 backSecondWord = "north";
                 goRoom(new Command(backFirstWord,backSecondWord));
             }
             
-            if(previousCommand.getSecondWord().equals("east")){
+            if(preCommandSecondWord.equals("east")){
                 backSecondWord = "west";
                 goRoom(new Command(backFirstWord,backSecondWord));
             }
             
-            if(previousCommand.getSecondWord().equals("west")){
+            if(preCommandSecondWord.equals("west")){
                 backSecondWord = "east";
                 goRoom(new Command(backFirstWord,backSecondWord));
             }
             
-            if(previousCommand.getSecondWord().equals("southEast")){
-                backSecondWord = "northWest";
-                goRoom(new Command(backFirstWord,backSecondWord));
-            }
-            
-            if(previousCommand.getSecondWord().equals("northWest")){
+            if(preCommandSecondWord.equals("northWest")){
                 backSecondWord = "southEast";
                 goRoom(new Command(backFirstWord,backSecondWord));
             }
+            
+            if(preCommandSecondWord.equals("southEast")){
+                backSecondWord = "northWest";
+                goRoom(new Command(backFirstWord,backSecondWord));
+            }
+            //al llamar a goRoom volví a meter un elemento en Stack, evito bucle
+            //extrayendo el último elemento de la pila
+            previousCommands.pop();
         }
     }
 
