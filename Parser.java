@@ -69,4 +69,11 @@ public class Parser
     public CommandWords getCommands(){
         return commands;
     }
+    
+    /**
+     * This method print all commands
+     */
+    public void printCommands(){
+        commands.showAll();
+    }
 }

@@ -145,7 +145,7 @@ public class Game
             "\nare trying you drink more \"garrafón\""+
             "\nYou must find ur friends! ¡¡FAST!!");
         System.out.println();
-        parser.getCommands().showAll();
+        parser.printCommands();
         System.out.println();
     }
 
