@@ -127,6 +127,9 @@ public class Game
         else if (commandWord.equals("quit")) {
             wantToQuit = quit(command);
         }
+        else if (commandWord.equals("eat")) {
+            eat(command);
+        }
 
         return wantToQuit;
     }
@@ -204,6 +207,16 @@ public class Game
         }
     }
 
+    private void eat(Command command)
+    {
+        if(command.hasSecondWord()) {
+            System.out.println("Eat what? this command don´t need a second word");
+        }
+        else {
+            System.out.println("You have eaten now and you are not hungry any more");
+        }
+    }
+    
     /** 
      * "Quit" was entered. Check the rest of the command to see
      * whether we really quit the game.
