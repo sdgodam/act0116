@@ -45,17 +45,17 @@ public class Room
     /**
      * @return The first item´s description of the room.
      */
-    public String getFirstItemDescription()
+    public String getItemDescription(int index)
     {
-        return items.get(0).getDescription();
+        return items.get(index).getDescription();
     }
     
     /**
      * @return The first item´s weigth of the room.
      */
-    public double getFirstItemWeight()
+    public double getItemWeight(int index)
     {
-        return items.get(0).getWeight();
+        return items.get(index).getWeight();
     }
 
     /**

@@ -19,6 +19,7 @@ public class Game
 {
     private Parser parser;
     private Room currentRoom;
+    private Command previousCommand;
 
     /**
      * Create the game and initialise its internal map.
@@ -27,6 +28,7 @@ public class Game
     {
         createRooms();
         parser = new Parser();
+        previousCommand = null;
     }
 
     /**
@@ -137,6 +139,9 @@ public class Game
         else if (commandWord.equals("eat")) {
             eat(command);
         }
+        else if (commandWord.equals("back")) {
+            back();
+        }
 
         return wantToQuit;
     }
@@ -178,6 +183,9 @@ public class Game
             System.out.println("There is no door!");
         }
         else {
+            //save the previous command
+            previousCommand = command;
+            //change current room for next room
             currentRoom = nextRoom;
             printLocationInfo();
         }
@@ -208,6 +216,47 @@ public class Game
             System.out.println("You have eaten now and you are not hungry any more");
         }
     }
+    
+    /**
+     * Permit you to back to the previous room visited
+     */
+    private void back(){
+        String backFirstWord = "go";
+        String backSecondWord;
+        if(previousCommand == null){
+            System.out.println("You don´t move, so not exists a previous room");
+        }else{
+            if(previousCommand.getSecondWord().equals("north")){
+                backSecondWord = "south";
+                goRoom(new Command(backFirstWord,backSecondWord));
+            }
+            
+            if(previousCommand.getSecondWord().equals("south")){
+                backSecondWord = "north";
+                goRoom(new Command(backFirstWord,backSecondWord));
+            }
+            
+            if(previousCommand.getSecondWord().equals("east")){
+                backSecondWord = "west";
+                goRoom(new Command(backFirstWord,backSecondWord));
+            }
+            
+            if(previousCommand.getSecondWord().equals("west")){
+                backSecondWord = "east";
+                goRoom(new Command(backFirstWord,backSecondWord));
+            }
+            
+            if(previousCommand.getSecondWord().equals("southEast")){
+                backSecondWord = "northWest";
+                goRoom(new Command(backFirstWord,backSecondWord));
+            }
+            
+            if(previousCommand.getSecondWord().equals("northWest")){
+                backSecondWord = "southEast";
+                goRoom(new Command(backFirstWord,backSecondWord));
+            }
+        }
+    }
 
     /** 
      * "Quit" was entered. Check the rest of the command to see
@@ -231,6 +280,6 @@ public class Game
     private void printLocationInfo()
     {
         System.out.println("You are " + currentRoom.getLongDescription()+"\n"
-            + "This room has the item called " + currentRoom.getFirstItemDescription() + " and its weight is "+ currentRoom.getFirstItemWeight() + " Kgs");
+            + "This room has the item called " + currentRoom.getItemDescription(0) + " and its weight is "+ currentRoom.getItemWeight(0) + " Kgs");
     }
 }
