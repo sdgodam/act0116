@@ -18,6 +18,8 @@ public class Room
 {
     private String description;
     private HashMap<String,Room> exits;
+    private String item;
+    private double weight;
 
     /**
      * Create a room described "description". Initially, it has
@@ -25,16 +27,12 @@ public class Room
      * "an open court yard".
      * @param description The room's description.
      */
-    public Room(String description) 
+    public Room(String description, String item, double weight) 
     {
         this.description = description;
         exits = new HashMap<>();
-        //         exits.put("north", null);
-        //         exits.put("south", null);
-        //         exits.put("east", null);
-        //         exits.put("west", null);
-        //         exits.put("southEast", null);
-        //         exits.put("northWest", null);
+        this.item = item;
+        this.weight = weight;
     }
 
     /**
@@ -55,6 +53,22 @@ public class Room
         return description;
     }
 
+    /**
+     * @return The item of the room.
+     */
+    public String getItem()
+    {
+        return item;
+    }
+    
+    /**
+     * @return The weight of the item of the room.
+     */
+    public double getWeight()
+    {
+        return weight;
+    }
+    
     public Room getExit(String direction){
         return exits.get(direction);
     }

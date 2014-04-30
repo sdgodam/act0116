@@ -37,13 +37,13 @@ public class Game
         Room humedo, flechazo, rebote, hurley, mishara, colonial, galocha;
 
         // create the rooms
-        humedo = new Room("in the middle of the barrio Húmedo");
-        galocha = new Room("in the pub called galocha");
-        flechazo = new Room("in the pub called flechazo");
-        rebote = new Room("in the pub called rebote");        
-        hurley = new Room("in the pub called hurley");
-        mishara = new Room("in the pub called mishara");
-        colonial = new Room("in the pub called colonial");
+        humedo = new Room("in the middle of the barrio Húmedo", "botella de Ron Brugal", 0.75);
+        galocha = new Room("in the pub called galocha", "navaja", 0.2);
+        flechazo = new Room("in the pub called flechazo", "paraguas", 0.8);
+        rebote = new Room("in the pub called rebote", "bufanda", 0.3);        
+        hurley = new Room("in the pub called hurley", "moto", 250);
+        mishara = new Room("in the pub called mishara", "galaxy S5", 0.2);
+        colonial = new Room("in the pub called colonial", "cazadora de cuero", 0.9);
 
         // initialise room exits
         //room humedo
@@ -202,8 +202,7 @@ public class Game
             System.out.println("Look what? this command don´t need a second word");
         }
         else {
-            System.out.println("You are " + currentRoom.getLongDescription());
-            //printLocationInfo();    preguntar si es peor solucion llamar a este metodo o da igual 
+            printLocationInfo();
         }
     }
 
@@ -216,7 +215,7 @@ public class Game
             System.out.println("You have eaten now and you are not hungry any more");
         }
     }
-    
+
     /** 
      * "Quit" was entered. Check the rest of the command to see
      * whether we really quit the game.
@@ -235,7 +234,7 @@ public class Game
 
     private void printLocationInfo()
     {
-        System.out.print("You are " + currentRoom.getLongDescription());
-        System.out.println();
+        System.out.println("You are " + currentRoom.getLongDescription()+"\n"
+            + "This room has the item called " + currentRoom.getItem() + " and its weight is "+ currentRoom.getWeight() + " Kgs");
     }
 }
