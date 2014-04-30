@@ -145,8 +145,8 @@ public class Game
             "\nare trying you drink more \"garrafón\""+
             "\nYou must find ur friends! ¡¡FAST!!");
         System.out.println();
-        System.out.println("Your command words are:");
-        System.out.println("   go quit help look");
+        parser.getCommands().showAll();
+        System.out.println();
     }
 
     /** 
