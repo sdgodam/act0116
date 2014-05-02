@@ -109,6 +109,8 @@ public class Room
      * @return A description of the room, including exits.
      */
     public String getLongDescription(){
-        return getDescription() + "\n" + getExitString();
+        return getDescription() + "\n" + getExitString()+ "\n"
+        + "This room has the item called " + getItemDescription(0)
+        + " and its weight is "+ getItemWeight(0) + " Kgs";
     }
 }
