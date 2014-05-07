@@ -1,4 +1,4 @@
-import java.util.Stack;
+
 /**
  *  This class is the main class of the "World of Zuul" application. 
  *  "World of Zuul" is a very simple, text based adventure game.  Users 
@@ -19,17 +19,16 @@ import java.util.Stack;
 public class Game 
 {
     private Parser parser;
-    private Room currentRoom;
-    private Stack<Room> previousRooms;
-
+    private Player player;
+    
     /**
      * Create the game and initialise its internal map.
      */
     public Game() 
     {
+        player = new Player();
         createRooms();
         parser = new Parser();
-        previousRooms = new Stack<>();
     }
 
     /**
@@ -75,8 +74,8 @@ public class Game
         mishara.setExit("southEast", colonial);
         //room colonial
         colonial.setExit("northWest", mishara);
-
-        currentRoom = humedo;  // start game outside
+        
+        player.setCurrentRoom(humedo);  // start game outside
     }
 
     /**
@@ -107,7 +106,7 @@ public class Game
         System.out.println("World of Barrio Humedo is a new, incredibly drunk adventure game.");
         System.out.println("Type 'help' if you need help.");
         System.out.println();
-        printLocationInfo();
+        player.printLocationInfo();
     }
 
     /**
@@ -129,25 +128,25 @@ public class Game
             printHelp();
         }
         else if (commandWord.equals("go")) {
-            goRoom(command);
+            player.goRoom(command);
         }
         else if (commandWord.equals("look")) {
-            look(command);
+            player.look(command);
         }
         else if (commandWord.equals("quit")) {
             wantToQuit = quit(command);
         }
         else if (commandWord.equals("eat")) {
-            eat(command);
+            player.eat(command);
         }
         else if (commandWord.equals("back")) {
-            back();
+            player.back();
         }
 
         return wantToQuit;
     }
 
-    // implementations of user commands:
+    // implementations of game commands:
 
     /**
      * Print out some help information.
@@ -165,70 +164,7 @@ public class Game
         System.out.println();
     }
 
-    /** 
-     * Try to go in one direction. If there is an exit, enter
-     * the new room, otherwise print an error message.
-     */
-    private void goRoom(Command command) 
-    {
-        if(!command.hasSecondWord()) {
-            // if there is no second word, we don't know where to go...
-            System.out.println("Go where?");
-            return;
-        }
-
-        // Try to leave current room.
-        Room nextRoom = currentRoom.getExit(command.getSecondWord());
-
-        if (nextRoom == null) {
-            System.out.println("There is no door!");
-        }
-        else {
-            //save the previous command
-            previousRooms.push(currentRoom);
-            //change current room for next room
-            currentRoom = nextRoom;
-            printLocationInfo();
-        }
-    }
-
-    /**
-     * This method looks your location
-     * @param command The comand that you introduce
-     */
-    private void look(Command command){
-        if(command.hasSecondWord()) {
-            System.out.println("Look what? this command don´t need a second word");
-        }
-        else {
-            printLocationInfo();
-        }
-    }
-
-    /**
-     * Inform you after eating that you aren´t hungry
-     */
-    private void eat(Command command)
-    {
-        if(command.hasSecondWord()) {
-            System.out.println("Eat what? this command don´t need a second word");
-        }
-        else {
-            System.out.println("You have eaten now and you are not hungry any more");
-        }
-    }
-
-    /**
-     * Permit you to back to the previous room visited
-     */
-    private void back(){
-        if(previousRooms.empty()){
-            System.out.println("You don´t move, so not exists a previous room");
-        }else{
-            currentRoom = previousRooms.pop();
-            printLocationInfo();
-        }
-    }
+    
 
     /** 
      * "Quit" was entered. Check the rest of the command to see
@@ -244,13 +180,5 @@ public class Game
         else {
             return true;  // signal that we want to quit
         }
-    }
-
-    /**
-     * Show you the description of your current room and the item that is on it
-     */
-    private void printLocationInfo()
-    {
-        System.out.println("You are " + currentRoom.getLongDescription());
-    }
+    }    
 }
