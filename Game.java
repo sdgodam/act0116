@@ -40,7 +40,7 @@ public class Game
 
         // create the rooms and add an object inside it
         humedo = new Room("in the middle of the barrio Húmedo");
-        humedo.addItem(new Item("botella de Ron Brugal", 0.75));
+        humedo.addItem(new Item("ronBrugal", 0.75));
         galocha = new Room("in the pub called galocha");
         galocha.addItem(new Item("navaja", 0.2));
         flechazo = new Room("in the pub called flechazo");
@@ -48,11 +48,11 @@ public class Game
         rebote = new Room("in the pub called rebote");        
         rebote.addItem(new Item("bufanda", 0.3));
         hurley = new Room("in the pub called hurley");
-        hurley.addItem(new Item("moto", 250));
+        hurley.addItem(new Item("motocicleta", 250));
         mishara = new Room("in the pub called mishara");
-        mishara.addItem(new Item("galaxy S5", 0.2));
+        mishara.addItem(new Item("galaxyS5", 0.2));
         colonial = new Room("in the pub called colonial");
-        colonial.addItem(new Item("cazadora de cuero", 0.9));
+        colonial.addItem(new Item("cazadoraCuero", 0.9));
 
         // initialise room exits
         //room humedo

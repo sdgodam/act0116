@@ -12,14 +12,16 @@ public class Player
     private ArrayList<Item> playerItems;
     private Room currentRoom;
     private Stack<Room> previousRooms;
+    private final double MAX_WEIGHT;
 
     /**
      * Constructor for objects of class Player
      */
-    public Player()
+    public Player(double maxWeight)
     {
         playerItems = new ArrayList<>();
         previousRooms = new Stack<>();
+        MAX_WEIGHT = maxWeight;
     }
 
     public void setCurrentRoom(Room room)
@@ -137,15 +139,37 @@ public class Player
         }else{
             if(command.hasSecondWord()) {
                 for(int i=0; i <= currentRoom.getItemsSize()-1; i++){
-                if(currentRoom.getItemDescription(i).equals(command.getSecondWord())){
-                    playerItems.add(currentRoom.getItem(i));
-                    currentRoom.removeItem(i);
+                    if(currentRoom.getItemDescription(i).equals(command.getSecondWord())){
+                        if(weight(currentRoom.getItem(i))){
+                            playerItems.add(currentRoom.getItem(i));
+                            currentRoom.removeItem(i);
+                        }else{
+                            System.out.println("Too weight, You can´t take it");
+                        }
+                    }
                 }
-            }
             }
             else {
                 System.out.println("You need say what you want to take, the item description");
             }
         }
+    }
+    
+    /**
+     * comprobate if the weight with taking a new item is valid or not
+     * @return true if it is valid or false if not
+     */
+    private boolean weight(Item item)
+    {
+        double totalWeight = 0;
+        boolean canTake = false;
+        for(Item theItem : playerItems){
+            totalWeight += theItem.getWeight();
+        }
+
+        if((totalWeight+item.getWeight()) <= MAX_WEIGHT){
+            canTake = true;
+        }
+        return canTake;
     }
 }
