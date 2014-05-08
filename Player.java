@@ -21,7 +21,7 @@ public class Player
         playerItems = new ArrayList<>();
         previousRooms = new Stack<>();
     }
-    
+
     public void setCurrentRoom(Room room)
     {
         currentRoom = room;
@@ -34,9 +34,9 @@ public class Player
     {
         playerItems.add(item);
     }
-    
+
     // implementations of player commands:    
-    
+
     /** 
      * Try to go in one direction. If there is an exit, enter
      * the new room, otherwise print an error message.
@@ -101,12 +101,30 @@ public class Player
             printLocationInfo();
         }
     }
-    
+
     /**
      * Show you the description of your current room and the item that is on it
      */
     public void printLocationInfo()
     {
         System.out.println("You are " + currentRoom.getLongDescription());
+    }
+
+    /**
+     * Show if the player hasnt items or the item/s that he has
+     */
+    public void items()
+    {
+        if(playerItems.size() == 0){
+            System.out.println("You haven´t any item");
+        }else if(playerItems.size() == 1){
+            System.out.println("You have only one item called " + playerItems.get(0).getDescription());
+        }
+        else{
+            System.out.println("You have the next list of items:");
+            for(Item item : playerItems){
+                System.out.print(item.getDescription()+ " ");
+            }
+        }
     }
 }
