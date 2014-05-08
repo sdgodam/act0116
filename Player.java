@@ -36,7 +36,6 @@ public class Player
     }
 
     // implementations of player commands:    
-
     /** 
      * Try to go in one direction. If there is an exit, enter
      * the new room, otherwise print an error message.
@@ -124,6 +123,28 @@ public class Player
             System.out.println("You have the next list of items:");
             for(Item item : playerItems){
                 System.out.print(item.getDescription()+ " ");
+            }
+        }
+    }
+
+    /**
+     * Take a item in the current room
+     */
+    public void take(Command command)
+    {
+        if(currentRoom.getItemsSize() == 0){
+            System.out.println("There arent any items in this room");
+        }else{
+            if(command.hasSecondWord()) {
+                for(int i=0; i <= currentRoom.getItemsSize()-1; i++){
+                if(currentRoom.getItemDescription(i).equals(command.getSecondWord())){
+                    playerItems.add(currentRoom.getItem(i));
+                    currentRoom.removeItem(i);
+                }
+            }
+            }
+            else {
+                System.out.println("You need say what you want to take, the item description");
             }
         }
     }

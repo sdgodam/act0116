@@ -43,6 +43,30 @@ public class Room
     }
     
     /**
+     * @return The size of the ArrayList of the room.
+     */
+    public int getItemsSize()
+    {
+        return items.size();
+    }
+    
+    /**
+     * @return The item that you indicate.
+     */
+    public Item getItem(int index)
+    {
+        return items.get(index);
+    }
+    
+    /**
+     * remove the item that you indicate.
+     */
+    public void removeItem(int index)
+    {
+        items.remove(index);
+    }
+    
+    /**
      * @return The first item´s description of the room.
      */
     public String getItemDescription(int index)
