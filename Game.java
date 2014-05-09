@@ -40,8 +40,8 @@ public class Game
 
         // create the rooms and add an object inside it
         humedo = new Room("in the middle of the barrio Húmedo");
-        humedo.addItem(new Item("ronBrugal", 0.75, true));
-        humedo.addItem(new Item("50euros", 0.01, true));
+        humedo.addItem(new Item("ronBrugal", 1.0, true));
+        humedo.addItem(new Item("50euros", 0.3, true));
         galocha = new Room("in the pub called galocha");
         galocha.addItem(new Item("navaja", 0.2, true));
         flechazo = new Room("in the pub called flechazo");
@@ -148,6 +148,9 @@ public class Game
         }
         else if (commandWord.equals("take")) {
             player.take(command);
+        }
+        else if (commandWord.equals("drop")) {
+            player.drop(command);
         }
 
         return wantToQuit;

@@ -37,6 +37,22 @@ public class Player
         playerItems.add(item);
     }
 
+    /**
+     * remove the item that you indicate.
+     */
+    public void removeItem(int index)
+    {
+        playerItems.remove(index);
+    }
+
+    /**
+     * @return The size of playerItems.
+     */
+    public int getItemsSize()
+    {
+        return playerItems.size();
+    }
+
     // implementations of player commands:    
     /** 
      * Try to go in one direction. If there is an exit, enter
@@ -127,6 +143,7 @@ public class Player
                 System.out.print(item.getDescription()+ " ");
             }
         }
+        System.out.println();
     }
 
     /**
@@ -175,5 +192,26 @@ public class Player
             canTake = true;
         }
         return canTake;
+    }
+
+    public void drop(Command command)
+    {
+        if(getItemsSize() == 0){
+            System.out.println("You haven´t items to drop");
+        }else{
+            if(command.hasSecondWord()) {
+                for(int i=0; i < getItemsSize(); i++){
+                    if(playerItems.get(i).getDescription().equals(command.getSecondWord())){
+                        currentRoom.addItem(playerItems.get(i));
+                        playerItems.remove(i);
+                    }else{
+                        System.out.println("This item doesn´t exist");
+                    }
+                }
+            }
+            else {
+                System.out.println("You need say what you want to drop, the item´s name!");
+            }
+        }
     }
 }
