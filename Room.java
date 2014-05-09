@@ -41,7 +41,7 @@ public class Room
     {
         return description;
     }
-    
+
     /**
      * @return The size of the ArrayList of the room.
      */
@@ -49,7 +49,7 @@ public class Room
     {
         return items.size();
     }
-    
+
     /**
      * @return The item that you indicate.
      */
@@ -57,7 +57,7 @@ public class Room
     {
         return items.get(index);
     }
-    
+
     /**
      * remove the item that you indicate.
      */
@@ -65,7 +65,7 @@ public class Room
     {
         items.remove(index);
     }
-    
+
     /**
      * @return The first item´s description of the room.
      */
@@ -73,7 +73,7 @@ public class Room
     {
         return items.get(index).getDescription();
     }
-    
+
     /**
      * @return The first item´s weigth of the room.
      */
@@ -132,9 +132,13 @@ public class Room
      *     Exits: north west southwest
      * @return A description of the room, including exits.
      */
-    public String getLongDescription(){
-        return getDescription() + "\n" + getExitString()+ "\n"
-        + "This room has the item called " + getItemDescription(0)
-        + " and its weight is "+ getItemWeight(0) + " Kgs";
+    public String getLongDescription()
+    {
+        String longDescription = getDescription() + "\n" + getExitString()+ "\n";
+        for(int i=0; i < items.size(); i++){
+            longDescription += "This room has the item called " + getItemDescription(i)
+            + " and its weight is "+ getItemWeight(i) + " Kgs\n";
+        }
+        return longDescription;
     }
 }

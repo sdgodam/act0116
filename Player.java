@@ -140,21 +140,25 @@ public class Player
             if(command.hasSecondWord()) {
                 for(int i=0; i <= currentRoom.getItemsSize()-1; i++){
                     if(currentRoom.getItemDescription(i).equals(command.getSecondWord())){
-                        if(weight(currentRoom.getItem(i))){
-                            playerItems.add(currentRoom.getItem(i));
-                            currentRoom.removeItem(i);
+                        if(currentRoom.getItem(i).getMovable()){
+                            if(weight(currentRoom.getItem(i))){
+                                playerItems.add(currentRoom.getItem(i));
+                                currentRoom.removeItem(i);
+                            }else{
+                                System.out.println("Too weight, You can´t take it");
+                            }
                         }else{
-                            System.out.println("Too weight, You can´t take it");
+                            System.out.println("This item can´t be movable. Try with other!");
                         }
                     }
                 }
             }
             else {
-                System.out.println("You need say what you want to take, the item description");
+                System.out.println("You need say what you want to take, the item´s name!");
             }
         }
     }
-    
+
     /**
      * comprobate if the weight with taking a new item is valid or not
      * @return true if it is valid or false if not

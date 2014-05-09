@@ -10,6 +10,7 @@ public class Item
     // instance variables - replace the example below with your own
     private String description;
     private double weight;
+    private boolean movable;
 
     /**
      * Constructor for objects of class Item
@@ -17,7 +18,7 @@ public class Item
      * @param weight The weight of the item, must be superior to zero if you introduces
      * a negative valour or zero its value will be zero
      */
-    public Item(String description, double weight){
+    public Item(String description, double weight, boolean movable){
         // initialise instance variables
         this.description = description;
         if(weight > 0){
@@ -26,6 +27,7 @@ public class Item
             System.out.println("ERROR! This value is not correct, it must be "
             + "positive and more than zero. Change it using the method setWeight of the item");
         }
+        this.movable = movable;
     }
 
     /**
@@ -56,5 +58,12 @@ public class Item
             + "positive and more than zero.");
         }
     }
-
+    
+    /**
+     * This method return the state of the boolean movable
+     */
+    public boolean getMovable()
+    {
+        return movable;
+    }
 }
