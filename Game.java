@@ -124,32 +124,32 @@ public class Game
             return false;
         }
 
-        String commandWord = command.getCommandWord();
-        if (commandWord.equals("help")) {
+        Option commandWord = command.getCommandWord();
+        if (commandWord.equals(Option.HELP)) {
             printHelp();
         }
-        else if (commandWord.equals("go")) {
+        else if (commandWord.equals(Option.GO)) {
             player.goRoom(command);
         }
-        else if (commandWord.equals("look")) {
+        else if (commandWord.equals(Option.LOOK)) {
             player.look(command);
         }
-        else if (commandWord.equals("quit")) {
+        else if (commandWord.equals(Option.QUIT)) {
             wantToQuit = quit(command);
         }
-        else if (commandWord.equals("eat")) {
+        else if (commandWord.equals(Option.EAT)) {
             player.eat(command);
         }
-        else if (commandWord.equals("back")) {
+        else if (commandWord.equals(Option.BACK)) {
             player.back();
         }
-        else if (commandWord.equals("items")) {
+        else if (commandWord.equals(Option.ITEMS)) {
             player.items();
         }
-        else if (commandWord.equals("take")) {
+        else if (commandWord.equals(Option.TAKE)) {
             player.take(command);
         }
-        else if (commandWord.equals("drop")) {
+        else if (commandWord.equals(Option.DROP)) {
             player.drop(command);
         }
 
