@@ -1,6 +1,6 @@
-import java.util.HashMap;
 import java.util.Set;
 import java.util.Iterator;
+import java.util.ArrayList;
 
 /**
  * This class is part of the "World of Zuul" application. 
@@ -16,23 +16,23 @@ import java.util.Iterator;
 public class CommandWords
 {
     // a constant array that holds all valid command words
-    private HashMap<String, Option> validCommands;
+    private Option option;
 
     /**
      * Constructor - initialise the command words.
      */
     public CommandWords()
     {
-        validCommands = new HashMap<>();
-        validCommands.put("ir", Option.GO);
-        validCommands.put("cerrar", Option.QUIT);
-        validCommands.put("ayuda", Option.HELP);
-        validCommands.put("mirar", Option.LOOK);
-        validCommands.put("comer", Option.EAT);
-        validCommands.put("atras", Option.BACK);
-        validCommands.put("objetos", Option.ITEMS);
-        validCommands.put("coger", Option.TAKE);
-        validCommands.put("dejar", Option.DROP);
+        //         validCommands = new HashMap<>();
+        //         validCommands.put("ir", Option.GO);
+        //         validCommands.put("cerrar", Option.QUIT);
+        //         validCommands.put("ayuda", Option.HELP);
+        //         validCommands.put("mirar", Option.LOOK);
+        //         validCommands.put("comer", Option.EAT);
+        //         validCommands.put("atras", Option.BACK);
+        //         validCommands.put("objetos", Option.ITEMS);
+        //         validCommands.put("coger", Option.TAKE);
+        //         validCommands.put("dejar", Option.DROP);
     }
 
     /**
@@ -42,9 +42,11 @@ public class CommandWords
      */
     public boolean isCommand(String aString)
     {
-        for(String key : validCommands.keySet()) {
-            if(key.equals(aString))
-                return true;
+        for(Option key : option.values()) {
+            if(key.getCommand().equals(aString))
+                if(key != Option.UNKNOWN){
+                    return true;
+            }
         }
         // if we get here, the string was not found in the commands
         return false;
@@ -56,8 +58,10 @@ public class CommandWords
     public void showAll()
     {
         System.out.println("Your command words are:");
-        for(String command : validCommands.keySet()){
-            System.out.print(command + " ");
+        for(Option command : option.values()){
+            if(command != Option.UNKNOWN){
+                System.out.print(command.getCommand() + " ");
+            }
         }
     }
 
@@ -71,7 +75,11 @@ public class CommandWords
     {
         Option wordOption = Option.UNKNOWN;
         if(isCommand(commandWord)){
-            wordOption = validCommands.get(commandWord);
+            for(Option key : option.values()) {
+                if(key.getCommand().equals(commandWord)){
+                    wordOption = key;
+                }
+            }
         }
         return wordOption;
     }
@@ -82,14 +90,9 @@ public class CommandWords
     public String getHelpOptionKey()
     {
         String correctKeyString = null;
-        Set keys = validCommands.keySet();
-        Iterator<String> it = keys.iterator();
-        boolean searching = true;
-        while(it.hasNext() && searching){
-            String key = it.next();
-            if(validCommands.get(key) == Option.HELP){
-                correctKeyString = key;
-                searching = false;
+        for(Option command : option.values()){
+            if(command == Option.HELP){
+                correctKeyString = command.getCommand();
             }
         }
         return correctKeyString;
