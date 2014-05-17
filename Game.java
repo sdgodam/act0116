@@ -20,7 +20,7 @@ public class Game
 {
     private Parser parser;
     private Player player;
-    
+
     /**
      * Create the game and initialise its internal map.
      */
@@ -75,7 +75,7 @@ public class Game
         mishara.setExit("southEast", colonial);
         //room colonial
         colonial.setExit("northWest", mishara);
-        
+
         player.setCurrentRoom(humedo);  // start game outside
     }
 
@@ -126,34 +126,26 @@ public class Game
         }
 
         Option commandWord = command.getCommandWord();
-        if (commandWord.equals(Option.HELP)) {
-            printHelp();
+        switch(commandWord){
+            case HELP:      printHelp();
+                            break;
+            case GO:        player.goRoom(command);
+                            break;
+            case LOOK:      player.look(command);
+                            break;
+            case QUIT:      wantToQuit = quit(command);
+                            break;
+            case EAT:       player.eat(command);
+                            break;
+            case BACK:      player.back();
+                            break;
+            case ITEMS:     player.items();
+                            break;
+            case TAKE:      player.take(command);
+                            break;
+            case DROP:      player.drop(command);
+                            break;
         }
-        else if (commandWord.equals(Option.GO)) {
-            player.goRoom(command);
-        }
-        else if (commandWord.equals(Option.LOOK)) {
-            player.look(command);
-        }
-        else if (commandWord.equals(Option.QUIT)) {
-            wantToQuit = quit(command);
-        }
-        else if (commandWord.equals(Option.EAT)) {
-            player.eat(command);
-        }
-        else if (commandWord.equals(Option.BACK)) {
-            player.back();
-        }
-        else if (commandWord.equals(Option.ITEMS)) {
-            player.items();
-        }
-        else if (commandWord.equals(Option.TAKE)) {
-            player.take(command);
-        }
-        else if (commandWord.equals(Option.DROP)) {
-            player.drop(command);
-        }
-
         return wantToQuit;
     }
 
@@ -175,7 +167,6 @@ public class Game
         System.out.println();
     }
 
-    
 
     /** 
      * "Quit" was entered. Check the rest of the command to see
