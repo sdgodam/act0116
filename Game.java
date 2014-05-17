@@ -105,7 +105,8 @@ public class Game
         System.out.println();
         System.out.println("Welcome to the World of Barrio Humedo!");
         System.out.println("World of Barrio Humedo is a new, incredibly drunk adventure game.");
-        System.out.println("Type 'help' if you need help.");
+        String help = parser.getHelpCommand();
+        System.out.println("Type \'" + help + "\' if you need " + help);
         System.out.println();
         player.printLocationInfo();
     }

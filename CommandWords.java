@@ -1,4 +1,6 @@
 import java.util.HashMap;
+import java.util.Set;
+import java.util.Iterator;
 
 /**
  * This class is part of the "World of Zuul" application. 
@@ -31,7 +33,6 @@ public class CommandWords
         validCommands.put("objetos", Option.ITEMS);
         validCommands.put("coger", Option.TAKE);
         validCommands.put("dejar", Option.DROP);
-        validCommands.put("desconocido", Option.UNKNOWN);
     }
 
     /**
@@ -68,6 +69,29 @@ public class CommandWords
      */
     public Option getCommandWord(String commandWord)
     {
-        return validCommands.get(commandWord);
+        Option wordOption = Option.UNKNOWN;
+        if(isCommand(commandWord)){
+            wordOption = validCommands.get(commandWord);
+        }
+        return wordOption;
+    }
+
+    /**
+     * Return the key that identified the Option.HELP value
+     */
+    public String getHelpOptionKey()
+    {
+        String correctKeyString = null;
+        Set keys = validCommands.keySet();
+        Iterator<String> it = keys.iterator();
+        boolean searching = true;
+        while(it.hasNext() && searching){
+            String key = it.next();
+            if(validCommands.get(key) == Option.HELP){
+                correctKeyString = key;
+                searching = false;
+            }
+        }
+        return correctKeyString;
     }
 }

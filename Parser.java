@@ -76,4 +76,11 @@ public class Parser
     public void printCommands(){
         commands.showAll();
     }
+    
+    /**
+     * This method return always the help command
+     */
+    public String getHelpCommand(){
+         return commands.getHelpOptionKey();
+    }
 }
