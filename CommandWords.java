@@ -1,6 +1,3 @@
-import java.util.Set;
-import java.util.Iterator;
-import java.util.ArrayList;
 
 /**
  * This class is part of the "World of Zuul" application. 
@@ -23,16 +20,7 @@ public class CommandWords
      */
     public CommandWords()
     {
-        //         validCommands = new HashMap<>();
-        //         validCommands.put("ir", Option.GO);
-        //         validCommands.put("cerrar", Option.QUIT);
-        //         validCommands.put("ayuda", Option.HELP);
-        //         validCommands.put("mirar", Option.LOOK);
-        //         validCommands.put("comer", Option.EAT);
-        //         validCommands.put("atras", Option.BACK);
-        //         validCommands.put("objetos", Option.ITEMS);
-        //         validCommands.put("coger", Option.TAKE);
-        //         validCommands.put("dejar", Option.DROP);
+        //nothing to write here now
     }
 
     /**
@@ -82,19 +70,5 @@ public class CommandWords
             }
         }
         return wordOption;
-    }
-
-    /**
-     * Return the key that identified the Option.HELP value
-     */
-    public String getHelpOptionKey()
-    {
-        String correctKeyString = null;
-        for(Option command : option.values()){
-            if(command == Option.HELP){
-                correctKeyString = command.getCommand();
-            }
-        }
-        return correctKeyString;
     }
 }
