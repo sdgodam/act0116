@@ -29,9 +29,7 @@ public class Game
     public Game() 
     {
         player = new Player(1.2);
-        map = new Map();
-        map.createRooms();
-        player.setCurrentRoom(map.getRoomHumedo());  // start game outside
+        map = player.getMap();
         parser = new Parser();
     }
 
