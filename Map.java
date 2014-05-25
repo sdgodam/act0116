@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Random;
 
 /**
  * Write a description of class Mapa here.
@@ -86,50 +87,11 @@ public class Map
     }
     
     /**
-     * @return the Room called galocha
+     * @return a random room
      */
-    public Room getRoomGalocha()
+    public Room getRandomRoom()
     {
-        return rooms.get(1);
-    }
-    
-    /**
-     * @return the Room called flechazo
-     */
-    public Room getRoomFlechazo()
-    {
-        return rooms.get(2);
-    }
-    
-    /**
-     * @return the Room called rebote
-     */
-    public Room getRoomRebote()
-    {
-        return rooms.get(3);
-    }
-    
-    /**
-     * @return the Room called hurley
-     */
-    public Room getRoomHurley()
-    {
-        return rooms.get(4);
-    }
-    
-    /**
-     * @return the Room called mishara
-     */
-    public Room getRoomMishara()
-    {
-        return rooms.get(5);
-    }
-    
-    /**
-     * @return the Room called colonial
-     */
-    public Room getRoomColonial()
-    {
-        return rooms.get(6);
+        Random rand = new Random();
+        return rooms.get(rand.nextInt(7));
     }
 }

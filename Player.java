@@ -56,7 +56,7 @@ public class Player
     {
         return playerItems.size();
     }
-    
+
     /**
      * @return the player map
      */
@@ -88,8 +88,9 @@ public class Player
             if(nextRoom.getCanTeletransport()){
                 //save the previous command
                 previousRooms.push(currentRoom);
-                currentRoom = map.getRoomHumedo();
-                System.out.println("¡¡ATTENTION!! - You enter in a magic room you have been teletransporter to first room");
+                currentRoom = map.getRandomRoom();
+                System.out.println("¡¡ATTENTION!! - You enter in a magic room you have "+
+                    "been teletransporter");
             }else{
                 //save the previous command
                 previousRooms.push(currentRoom);
