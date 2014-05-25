@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+import java.util.Collections;
 
 /**
  *  This class is the main class of the "World of Zuul" application. 
@@ -37,22 +39,27 @@ public class Game
     private void createRooms()
     {
         Room humedo, flechazo, rebote, hurley, mishara, colonial, galocha;
-
+        ArrayList<Boolean> canTransport = new ArrayList<>();
+        canTransport.add(true);
+        for(int i=1; i<7;i++){
+            canTransport.add(false);
+        }
+        Collections.shuffle(canTransport);
         // create the rooms and add an object inside it
-        humedo = new Room("in the middle of the barrio Húmedo");
+        humedo = new Room("in the middle of the barrio Húmedo",canTransport.get(0));
         humedo.addItem(new Item("ronBrugal", 1.0, true));
         humedo.addItem(new Item("50euros", 0.3, true));
-        galocha = new Room("in the pub called galocha");
+        galocha = new Room("in the pub called galocha",canTransport.get(1));
         galocha.addItem(new Item("navaja", 0.2, true));
-        flechazo = new Room("in the pub called flechazo");
+        flechazo = new Room("in the pub called flechazo",canTransport.get(2));
         flechazo.addItem(new Item("paraguas", 0.8, true));
-        rebote = new Room("in the pub called rebote");        
+        rebote = new Room("in the pub called rebote",canTransport.get(3));        
         rebote.addItem(new Item("bufanda", 0.3, true));
-        hurley = new Room("in the pub called hurley");
+        hurley = new Room("in the pub called hurley",canTransport.get(4));
         hurley.addItem(new Item("motocicleta", 250, false));
-        mishara = new Room("in the pub called mishara");
+        mishara = new Room("in the pub called mishara",canTransport.get(5));
         mishara.addItem(new Item("galaxyS5", 0.2, true));
-        colonial = new Room("in the pub called colonial");
+        colonial = new Room("in the pub called colonial",canTransport.get(6));
         colonial.addItem(new Item("cazadoraCuero", 0.9, true));
 
         // initialise room exits
