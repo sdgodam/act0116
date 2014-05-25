@@ -77,8 +77,59 @@ public class Map
         rooms.get(6).setExit("northWest", rooms.get(5));
     }
     
+    /**
+     * @return the Room called humedo
+     */
     public Room getRoomHumedo()
     {
         return rooms.get(0);
+    }
+    
+    /**
+     * @return the Room called galocha
+     */
+    public Room getRoomGalocha()
+    {
+        return rooms.get(1);
+    }
+    
+    /**
+     * @return the Room called flechazo
+     */
+    public Room getRoomFlechazo()
+    {
+        return rooms.get(2);
+    }
+    
+    /**
+     * @return the Room called rebote
+     */
+    public Room getRoomRebote()
+    {
+        return rooms.get(3);
+    }
+    
+    /**
+     * @return the Room called hurley
+     */
+    public Room getRoomHurley()
+    {
+        return rooms.get(4);
+    }
+    
+    /**
+     * @return the Room called mishara
+     */
+    public Room getRoomMishara()
+    {
+        return rooms.get(5);
+    }
+    
+    /**
+     * @return the Room called colonial
+     */
+    public Room getRoomColonial()
+    {
+        return rooms.get(6);
     }
 }
