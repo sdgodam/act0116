@@ -92,6 +92,6 @@ public class Map
     public Room getRandomRoom()
     {
         Random rand = new Random();
-        return rooms.get(rand.nextInt(7));
+        return rooms.get(rand.nextInt(rooms.size()));
     }
 }

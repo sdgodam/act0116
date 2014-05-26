@@ -21,15 +21,13 @@ public class Game
 {
     private Parser parser;
     private Player player;
-    private Map map;
 
     /**
-     * Create the game and initialise its internal map.
+     * Create the game and.
      */
     public Game() 
     {
         player = new Player(1.2);
-        map = player.getMap();
         parser = new Parser();
     }
 
