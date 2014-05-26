@@ -12,6 +12,7 @@ public class Player
     private ArrayList<Item> playerItems;
     private Room currentRoom;
     private Stack<Room> previousRooms;
+    private Map map;
     private final double MAX_WEIGHT;
 
     /**
@@ -21,6 +22,9 @@ public class Player
     {
         playerItems = new ArrayList<>();
         previousRooms = new Stack<>();
+        map = new Map();
+        map.createRooms();
+        setCurrentRoom(map.getRoomHumedo());  // start game outside
         MAX_WEIGHT = maxWeight;
     }
 
@@ -53,6 +57,14 @@ public class Player
         return playerItems.size();
     }
 
+    /**
+     * @return the player map
+     */
+    public Map getMap()
+    {
+        return map;
+    }
+
     // implementations of player commands:    
     /** 
      * Try to go in one direction. If there is an exit, enter
@@ -73,10 +85,18 @@ public class Player
             System.out.println("There is no door!");
         }
         else {
-            //save the previous command
-            previousRooms.push(currentRoom);
-            //change current room for next room
-            currentRoom = nextRoom;
+            if(nextRoom.getCanTeletransport()){
+                //save the previous command
+                previousRooms.push(currentRoom);
+                currentRoom = map.getRandomRoom();
+                System.out.println("¡¡ATTENTION!! - You enter in a magic room you have "+
+                    "been teletransporter");
+            }else{
+                //save the previous command
+                previousRooms.push(currentRoom);
+                //change current room for next room
+                currentRoom = nextRoom;
+            }
             printLocationInfo();
         }
     }

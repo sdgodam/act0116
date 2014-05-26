@@ -20,6 +20,7 @@ public class Room
     private String description;
     private HashMap<String,Room> exits;
     private ArrayList<Item> items;
+    private boolean canTeletransport;
 
     /**
      * Create a room described "description". Initially, it has
@@ -27,11 +28,12 @@ public class Room
      * "an open court yard".
      * @param description The room's description.
      */
-    public Room(String description) 
+    public Room(String description, boolean canTeletransport) 
     {
         this.description = description;
         exits = new HashMap<>();
         items = new ArrayList<>();
+        this.canTeletransport = canTeletransport;
     }
 
     /**
@@ -140,5 +142,13 @@ public class Room
             + " and its weight is "+ getItemWeight(i) + " Kgs\n";
         }
         return longDescription;
+    }
+    
+    /**
+     * @return the boolean canTeletransport, true is the room can and false if cant
+     */
+    public boolean getCanTeletransport()
+    {
+        return canTeletransport;
     }
 }

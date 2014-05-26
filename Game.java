@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 
 /**
  *  This class is the main class of the "World of Zuul" application. 
@@ -22,61 +23,12 @@ public class Game
     private Player player;
 
     /**
-     * Create the game and initialise its internal map.
+     * Create the game and.
      */
     public Game() 
     {
         player = new Player(1.2);
-        createRooms();
         parser = new Parser();
-    }
-
-    /**
-     * Create all the rooms and link their exits together.
-     */
-    private void createRooms()
-    {
-        Room humedo, flechazo, rebote, hurley, mishara, colonial, galocha;
-
-        // create the rooms and add an object inside it
-        humedo = new Room("in the middle of the barrio Húmedo");
-        humedo.addItem(new Item("ronBrugal", 1.0, true));
-        humedo.addItem(new Item("50euros", 0.3, true));
-        galocha = new Room("in the pub called galocha");
-        galocha.addItem(new Item("navaja", 0.2, true));
-        flechazo = new Room("in the pub called flechazo");
-        flechazo.addItem(new Item("paraguas", 0.8, true));
-        rebote = new Room("in the pub called rebote");        
-        rebote.addItem(new Item("bufanda", 0.3, true));
-        hurley = new Room("in the pub called hurley");
-        hurley.addItem(new Item("motocicleta", 250, false));
-        mishara = new Room("in the pub called mishara");
-        mishara.addItem(new Item("galaxyS5", 0.2, true));
-        colonial = new Room("in the pub called colonial");
-        colonial.addItem(new Item("cazadoraCuero", 0.9, true));
-
-        // initialise room exits
-        //room humedo
-        humedo.setExit("east", flechazo);
-        humedo.setExit("south", hurley);
-        humedo.setExit("west", rebote);
-        humedo.setExit("northWest", galocha);
-        //room galocha
-        galocha.setExit("southEast", humedo);
-        //room flechazo
-        flechazo.setExit("west", humedo);
-        //room rebote
-        rebote.setExit("east", humedo);
-        //room hurley
-        hurley.setExit("north", humedo);
-        hurley.setExit("east", mishara);
-        //room mishara
-        mishara.setExit("west", hurley);
-        mishara.setExit("southEast", colonial);
-        //room colonial
-        colonial.setExit("northWest", mishara);
-
-        player.setCurrentRoom(humedo);  // start game outside
     }
 
     /**
